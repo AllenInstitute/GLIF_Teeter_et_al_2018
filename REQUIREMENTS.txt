@@ -1,0 +1,21 @@
+This code was run with 
+Python 2.7.13 :: Anaconda 2.1.0 (64-bit)
+Scipy version 0.19.1
+Numpy version 1.13.1
+
+An internet connection is required for much of this code because it accesses the Allen Institute Cell Types Database.
+
+The following python libraries will be needed.
+allensdk
+matplotlib
+numpy
+os
+pandas
+shutil
+sys
+subprocess (if submitting to a cluster)
+pickle
+time
+
+
+

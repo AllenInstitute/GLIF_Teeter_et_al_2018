@@ -1,0 +1,15 @@
+WARNING:root:2018-02-11 13:43
+WARNING:root:488400343 has less than two noise_1 sweeps
+WARNING:root:488402499 has less than two noise_1 sweeps
+WARNING:root:488418027noise 1 has inconsistent model sweep times
+WARNING:root:488418027noise 2 has inconsistent model sweep times
+WARNING:root:508281653 has less than two noise_1 sweeps
+WARNING:root:508305938 has less than two noise_1 sweeps
+WARNING:root:508380891noise 2 has inconsistent model sweep times
+WARNING:root:526791834 has less than two noise_1 sweeps
+WARNING:root:527944264 has less than two noise_1 sweeps
+WARNING:root:528015670 has less than two noise_2 sweeps
+WARNING:root:542179094 has less than two noise_1 sweeps
+WARNING:root:548434716 has less than two noise_1 sweeps
+WARNING:root:548440226 has less than two noise_1 sweeps
+WARNING:root:removing 12 out of 157 folders
