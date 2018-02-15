@@ -1,4 +1,4 @@
-This code will reproduce the analysis and figures in the Nature Communications, 2018 article, "Generalized Leaky Integrate-And-Fire Models Classify Multiple Neuron Types", by Teeter Et. Al.  This code was written by Corinne Teeter with guest appearances by Vilas Menon and Ramakrishnan Iyer and others on the software team (see the CONTRIBUTIONS file for more info).  
+This code will reproduce the analysis and figures in the Nature Communications, 2018 article, "Generalized Leaky Integrate-And-Fire Models Classify Multiple Neuron Types", by Teeter Et. Al.  This code was written by Corinne Teeter with guest appearances by Vilas Menon and Ramakrishnan Iyer and others on the software team (see the AUTHORS file for more info).  
 
 This repository is provided “as is”.  However, pull requests will be considered on an individual basis with adequate unit tests.  Please inquire whether your desired contribution may be considered.  Of particular interest would be the conversion to python 3 and individual module unit tests.
 
