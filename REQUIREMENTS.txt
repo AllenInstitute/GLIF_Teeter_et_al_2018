@@ -3,9 +3,9 @@ Python 2.7.13 :: Anaconda 2.1.0 (64-bit)
 Scipy version 0.19.1
 Numpy version 1.13.1
 
-An internet connection is required for much of this code because it accesses the Allen Institute Cell Types Database.
+An internet connection is required in order to accesses the Allen Institute Cell Types Database.
 
-The following python libraries will be needed.
+The following python libraries will be required.
 allensdk
 matplotlib
 numpy
@@ -16,6 +16,22 @@ sys
 subprocess (if submitting to a cluster)
 pickle
 time
+scipy
+warnings
+datetime
+statsmodels
+copy
+csv
+ 
+For the clustering code the followin R packages will be required:
+gtools
+gplots
+stats
+ape
+e1071
+cluster
+apcluster
+mclust
 
 
 
