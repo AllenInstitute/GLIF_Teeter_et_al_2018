@@ -1,0 +1,252 @@
+{
+  "El": {
+    "El_max_subth_long_square": {
+      "dependencies": null, 
+      "value": -0.0763636932373047
+    }, 
+    "El_noise": {
+      "measured": {
+        "dependencies": null, 
+        "list": [
+          -0.0763918914794922, 
+          -0.076230110168457
+        ], 
+        "mean": -0.076311000823974601
+      }
+    }, 
+    "El_ramp": {
+      "dependencies": null, 
+      "value": -0.0759471588134766
+    }, 
+    "El_suprathreshold_blip": {
+      "dependencies": null, 
+      "value": -0.0754985656738281
+    }, 
+    "El_subthreshold_blip": {
+      "dependencies": null, 
+      "value": -0.0762784729003906
+    }
+  }, 
+  "spike_cut_length": {
+    "no deltaV shift": {
+      "slope": 0.51771703513235756, 
+      "length": 60.0, 
+      "intercept": 0.0086824994067242652, 
+      "dependencies": null
+    }
+  }, 
+  "threshold_adaptation": {
+    "b_spike_component_of_threshold": null, 
+    "b_voltage_comp_of_thr_from_fitab": null, 
+    "b_voltage_comp_of_thr_from_fitabth": null, 
+    "a_voltage_comp_of_thr_from_fitab": null, 
+    "a_spike_component_of_threshold": null, 
+    "a_voltage_comp_of_thr_from_fitabth": null
+  }, 
+  "th_inf": {
+    "via_Vmeasure": {
+      "from_zero": 0.029329714055725833, 
+      "dependencies": "measured from suprathreshold blip", 
+      "value": -0.046168851618102261
+    }, 
+    "fit_with_v_comp_of_th": {
+      "from_zero": null, 
+      "value": null
+    }
+  }, 
+  "resistance": {
+    "R_test_list": {
+      "list": [
+        171375912.53716755, 
+        170374236.78970173
+      ], 
+      "mean": 170875074.66343462
+    }, 
+    "R_fit_ASC_and_R": {
+      "list": [
+        175200657.19886458, 
+        172755892.26671633
+      ], 
+      "mean": 173978274.73279047
+    }, 
+    "R_from_lims": {
+      "value": 126718744.635582
+    }
+  }, 
+  "asc": {
+    "amp": [
+      -9.037764837223093e-12, 
+      -1.168501906886219e-10
+    ], 
+    "k": [
+      3.0, 
+      100.0
+    ], 
+    "dependencies": "Cap and res from least squares"
+  }, 
+  "capacitance": {
+    "C_from_lims": {
+      "value": 1.2453911048408184e-10
+    }, 
+    "C_test_list": {
+      "list": [
+        6.2195631461341214e-11, 
+        6.2370286169643471e-11
+      ], 
+      "mean": 6.2282958815492349e-11
+    }
+  }, 
+  "MLIN": {
+    "tau_from_AC": 0.057200623186562875, 
+    "sv_for_expsymm": 0.0007799792360237126, 
+    "var_of_section": 1.2167352172562686e-06
+  }, 
+  "sweep_properties": {
+    "multi_short_square": {
+      "sweep_num": null
+    }, 
+    "noise1": {
+      "1": {
+        "sweep_num": 59, 
+        "El": -0.0763918914794922, 
+        "spike_ind": [
+          201358, 
+          203182, 
+          204691, 
+          222926, 
+          224708, 
+          243754, 
+          360835, 
+          361313, 
+          362128, 
+          362799, 
+          363438, 
+          364359, 
+          364767, 
+          365953, 
+          367856, 
+          369126, 
+          373871, 
+          375280, 
+          376482, 
+          377991, 
+          378738, 
+          380906, 
+          382372, 
+          383171, 
+          383760, 
+          384609, 
+          386155, 
+          388509, 
+          395205, 
+          396491, 
+          398120, 
+          398769, 
+          400946, 
+          402699, 
+          403536, 
+          404588, 
+          407912, 
+          415259, 
+          417170, 
+          418376
+        ]
+      }, 
+      "3": {
+        "sweep_num": null, 
+        "El": null, 
+        "spike_ind": null
+      }, 
+      "2": {
+        "sweep_num": 63, 
+        "El": -0.076230110168457, 
+        "spike_ind": [
+          201116, 
+          202972, 
+          204651, 
+          223683, 
+          224942, 
+          243805, 
+          244911, 
+          360834, 
+          361321, 
+          362074, 
+          362771, 
+          363464, 
+          364351, 
+          364748, 
+          365935, 
+          367605, 
+          369105, 
+          373176, 
+          374770, 
+          376358, 
+          377945, 
+          378703, 
+          380903, 
+          381894, 
+          382835, 
+          383585, 
+          384582, 
+          387929, 
+          389425, 
+          393925, 
+          396388, 
+          398045, 
+          398752, 
+          400929, 
+          402696, 
+          403532, 
+          404575, 
+          408379, 
+          415219, 
+          416511, 
+          418138
+        ]
+      }, 
+      "5": {
+        "sweep_num": null, 
+        "El": null, 
+        "spike_ind": null
+      }, 
+      "4": {
+        "sweep_num": null, 
+        "El": null, 
+        "spike_ind": null
+      }
+    }, 
+    "ramp": {
+      "sweep_num": [
+        4, 
+        5, 
+        6
+      ]
+    }, 
+    "max_subthresh_long_square": {
+      "sweep_num": [
+        39, 
+        52, 
+        53
+      ]
+    }, 
+    "suprathreshold_short_square": {
+      "R_testpulsesweep_num": [
+        19
+      ]
+    }, 
+    "subthreshold_short_square": {
+      "sweep_num": [
+        12
+      ]
+    }
+  }, 
+  "spike_cutting": {
+    "NOdeltaV": {
+      "slope": 0.51771703513235756, 
+      "intercept": 0.0086824994067242652, 
+      "cut_length": 60.0, 
+      "dependencies": null
+    }
+  }, 
+  "dt_used_for_preprocessor_calculations": 5e-05
+}

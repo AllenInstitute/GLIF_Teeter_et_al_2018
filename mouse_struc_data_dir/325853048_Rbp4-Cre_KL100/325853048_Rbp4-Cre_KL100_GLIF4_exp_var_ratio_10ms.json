@@ -1,0 +1,18 @@
+{
+  "model_spike_times_same_across_sweeps": {
+    "n1": 1,
+    "n2": 1
+  },
+  "run_model_spike_times_match_database": {
+    "n2": true
+  },
+  "n2_after_opt_sanitycheck": 0.46186207413122343,
+  "after_opt": {
+    "noise_1": 0.46488718317995326,
+    "noise_2": 0.461862683820717
+  },
+  "before_opt": {
+    "noise_1": 0.4993888496241193,
+    "noise_2": 0.21469500452327855
+  }
+}

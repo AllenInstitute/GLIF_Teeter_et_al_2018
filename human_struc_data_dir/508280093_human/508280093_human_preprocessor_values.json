@@ -1,0 +1,223 @@
+{
+  "El": {
+    "El_max_subth_long_square": {
+      "dependencies": null,
+      "value": -0.0716070175170898
+    },
+    "El_noise": {
+      "measured": {
+        "dependencies": null,
+        "list": [
+          -0.07232099151611329,
+          -0.0724396209716797,
+          -0.0722306213378906
+        ],
+        "mean": -0.07233041127522787
+      }
+    },
+    "El_ramp": {
+      "dependencies": null,
+      "value": -0.0727984085083008
+    },
+    "El_suprathreshold_blip": {
+      "dependencies": null,
+      "value": -0.0728530731201172
+    },
+    "El_subthreshold_blip": {
+      "dependencies": null,
+      "value": -0.0728345489501953
+    }
+  },
+  "spike_cut_length": {
+    "no deltaV shift": {
+      "slope": 0.05294599492794803,
+      "length": 103.0,
+      "intercept": 0.018717317753388116,
+      "dependencies": null
+    }
+  },
+  "threshold_adaptation": {
+    "b_spike_component_of_threshold": null,
+    "b_voltage_comp_of_thr_from_fitab": null,
+    "b_voltage_comp_of_thr_from_fitabth": null,
+    "a_voltage_comp_of_thr_from_fitab": null,
+    "a_spike_component_of_threshold": null,
+    "a_voltage_comp_of_thr_from_fitabth": null
+  },
+  "th_inf": {
+    "via_Vmeasure": {
+      "from_zero": 0.02794999395173113,
+      "dependencies": "measured from suprathreshold blip",
+      "value": -0.04490307916838607
+    },
+    "fit_with_v_comp_of_th": {
+      "from_zero": null,
+      "value": null
+    }
+  },
+  "resistance": {
+    "R_test_list": {
+      "list": [
+        90116637.60629444,
+        88612544.10583566,
+        75727512.89369744
+      ],
+      "mean": 84818898.20194252
+    },
+    "R_fit_ASC_and_R": {
+      "list": [
+        119310372.28542799,
+        114619906.71353036,
+        87366987.05978237
+      ],
+      "mean": 107099088.68624692
+    },
+    "R_from_lims": {
+      "value": 82031212.747097
+    }
+  },
+  "asc": {
+    "amp": [
+      -4.3215308944138464e-11,
+      -1.1917801486064552e-10
+    ],
+    "k": [
+      10.0,
+      29.999999999999996
+    ],
+    "dependencies": "Cap and res from least squares"
+  },
+  "capacitance": {
+    "C_from_lims": {
+      "value": 2.823188178570537e-10
+    },
+    "C_test_list": {
+      "list": [
+        3.4066589447576393e-10,
+        3.320816339689603e-10,
+        3.124224722969929e-10
+      ],
+      "mean": 3.2839000024723905e-10
+    }
+  },
+  "MLIN": {
+    "tau_from_AC": 0.09005736413497022,
+    "sv_for_expsymm": 0.00013450966748026515,
+    "var_of_section": 3.6185701291303e-08
+  },
+  "sweep_properties": {
+    "multi_short_square": {
+      "sweep_num": null
+    },
+    "noise1": {
+      "1": {
+        "sweep_num": 55,
+        "El": -0.07232099151611329,
+        "spike_ind": [
+          252659,
+          281592,
+          451502,
+          452169,
+          454333,
+          456255,
+          460984,
+          469136,
+          472893,
+          476876,
+          479344,
+          481271,
+          486384,
+          494504,
+          498093,
+          501865,
+          504327,
+          506341,
+          511773,
+          519438,
+          523040
+        ]
+      },
+      "3": {
+        "sweep_num": 61,
+        "El": -0.0722306213378906,
+        "spike_ind": [
+          451756,
+          454530,
+          479137,
+          504487
+        ]
+      },
+      "2": {
+        "sweep_num": 57,
+        "El": -0.0724396209716797,
+        "spike_ind": [
+          252901,
+          451540,
+          452370,
+          454525,
+          456462,
+          461562,
+          469750,
+          473365,
+          477089,
+          479577,
+          487093,
+          495137,
+          498398,
+          501990,
+          504451,
+          506445,
+          511818,
+          519468,
+          523157
+        ]
+      },
+      "5": {
+        "sweep_num": null,
+        "El": null,
+        "spike_ind": null
+      },
+      "4": {
+        "sweep_num": null,
+        "El": null,
+        "spike_ind": null
+      }
+    },
+    "ramp": {
+      "sweep_num": [
+        4,
+        5,
+        6
+      ]
+    },
+    "max_subthresh_long_square": {
+      "sweep_num": [
+        42
+      ]
+    },
+    "suprathreshold_short_square": {
+      "R_testpulsesweep_num": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    },
+    "subthreshold_short_square": {
+      "sweep_num": [
+        22
+      ]
+    }
+  },
+  "spike_cutting": {
+    "NOdeltaV": {
+      "slope": 0.05294599492794803,
+      "intercept": 0.018717317753388116,
+      "cut_length": 103.0,
+      "dependencies": null
+    }
+  },
+  "dt_used_for_preprocessor_calculations": 5e-05
+}

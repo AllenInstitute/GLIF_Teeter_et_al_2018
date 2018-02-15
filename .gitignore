@@ -8,14 +8,13 @@ cell_data
 */cell_types
 create_data_dir/human_struc_data_dir
 create_data_dir/mouse_struc_data_dir
-human_struc_data_dir/
-mouse_struc_data_dir/
-mouse_struc_data_dir/*/*
 *stats_out2.json
 *stats_out2.pkl
 *#
 human_nwb
 mouse_nwb
+human_struc_data_dir
+mouse_struc_data_dir
 *~
 create_data_dir/mouse_struct_data_dir_before_exclusions/
 create_data_dir/human_struc_data_dir_before_exclusions/

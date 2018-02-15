@@ -1,0 +1,14 @@
+{
+  "noise1": {
+    "RSS_of_voltage_diff": 91.58300483333998,
+    "var_of_voltage_difference": 1.942481929565187e-05,
+    "var_of_voltage_data": 7.038873130895163e-05,
+    "num_data_points_wo_spike_shape": 4180641
+  },
+  "noise2": {
+    "RSS_of_voltage_diff": 122.3663127240222,
+    "var_of_voltage_difference": 1.9603910088157422e-05,
+    "var_of_voltage_data": 7.091421342797207e-05,
+    "num_data_points_wo_spike_shape": 5573811
+  }
+}
