@@ -1,0 +1,7 @@
+The majority of this analysis code was written by Corinne Teeter.
+
+Vilas Menon contributed all of the clustering code.
+
+Ram Iyer contributed to areas involved in the resistance and after spike currents fitting.
+
+The code in the libraries.GLIF_sdk directories are copies of modules used in our internal SDK.  Parts of these may have been written by Corinne Teeter or David Feng or others on the Technology.
