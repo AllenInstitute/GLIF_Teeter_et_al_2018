@@ -5,6 +5,7 @@ import warnings
 from allensdk.api.queries.glif_api import GlifApi
 import glif_sdk.lims_utilities as lu
 from allensdk.core.nwb_data_set import NwbDataSet
+from allensdk.api.api import Api
 
 glif_api = GlifApi()
 
@@ -130,7 +131,44 @@ def get_ev_from_folder(ends_with, specimen_id_directory, model_string):
         return np.nan 
 
 def get_model_nwb_path_from_folder(ends_with, specimen_id_directory, s):
-    '''get the  for the specified model if the the
+    '''Get the  path for the specified model if the the
+    corresponding model exists in the structured data directory.
+    Note: this will only work within the Allen Institute.  Use download_model_nwb
+    for use outside the Institute.
+    inputs:
+        ends_with: string that is to be matched with a file in the structured data directory in 
+            order to return a value. i.e. if GLIF2 is being requested but there is not GLIF2 file in the
+            structured data directory, a nan will be returned regardless of whether there is a value of explain 
+            variance in the database. For example this would happen if the model was excluded from 
+            analysis because of an aberrant parameter.  
+        specimen_id_directory: path to the structured data directory used in the rest of analysis
+        s: search string in the neuronal model name
+    returns:
+        either a nan or the path of the Allen Institute model .nwb file.
+        
+    '''
+    sp_id=os.path.basename(specimen_id_directory)[:9]
+    if sp_id=='580895033':
+        print 'skipping 580895033 which is not in the api, returning np.nan'
+        return np.nan
+    if len(glif_api.get_neuronal_models(int(sp_id)))>1: #basic check that data is the form expected
+        raise Exception('why is there more than one list for %d' % sp_id)
+    # get models for the neuron
+    nms=glif_api.get_neuronal_models(int(sp_id))[0]['neuronal_models']
+    paths=[[m['name'], m['neuronal_model_runs'][0]['well_known_files'][0]['path']] for m in nms] #list of model name
+    
+    if np.any([f.endswith(ends_with) for f in os.listdir(specimen_id_directory)]):            
+        LIF_binary=[s in p[0] for p in paths]
+        if np.any(LIF_binary):
+            return paths[np.where(LIF_binary)[0][0]][1]
+        else:
+            raise Exception('there is %s in the directory but not in the api' % s)
+    else:
+        return np.nan 
+
+def download_model_nwb_if_model_exists_in_SDD(ends_with, specimen_id_directory, s):
+    '''
+    Downloads the .nwb file and returns it's path for the specified model if the 
     corresponding model exists in the structured data directory
     inputs:
         ends_with: string that is to be matched with a file in the structured data directory in 
@@ -152,11 +190,22 @@ def get_model_nwb_path_from_folder(ends_with, specimen_id_directory, s):
         raise Exception('why is there more than one list for %d' % sp_id)
     # get models for the neuron
     nms=glif_api.get_neuronal_models(int(sp_id))[0]['neuronal_models']
-    paths=[[m['name'], m['neuronal_model_runs'][0]['well_known_files'][0]['path']] for m in nms] #list of model name, explained variance pairs
+    wkf_ids=[[m['name'], m['neuronal_model_runs'][0]['well_known_files'][0]['id']] for m in nms] #list
     if np.any([f.endswith(ends_with) for f in os.listdir(specimen_id_directory)]):            
-        LIF_binary=[s in p[0] for p in paths]
+        LIF_binary=[s in p[0] for p in wkf_ids]
         if np.any(LIF_binary):
-            return paths[np.where(LIF_binary)[0][0]][1]
+            base_path=os.path.join(os.path.dirname(os.getcwd()), 'model_nwb_files')
+            download_path=os.path.join(base_path, sp_id+'_'+ends_with[1:7]+'model.nwb')
+            # if the file does not already exist locally, download it
+            try:
+                os.stat(base_path)
+            except:
+                os.mkdir(base_path)
+            if not os.path.isfile(download_path):
+                wkf_id=wkf_ids[np.where(LIF_binary)[0][0]][1]
+                url = Api().construct_well_known_file_download_url(wkf_id)
+                Api().retrieve_file_over_http(url, download_path)
+            return download_path
         else:
             raise Exception('there is %s in the directory but not in the api' % s)
     else:
@@ -164,7 +213,7 @@ def get_model_nwb_path_from_folder(ends_with, specimen_id_directory, s):
 
 def get_sweep_num_by_name(sweeps, sweep_name):
     '''returns the sweep numbers for a specific sweep name in the file
-    queried by ctc.get_ephys_sweeps(int(specimen_id))
+    queried by ctc.get_ephys_sweeps(int(specimen_id))d
     '''
     return [ s['sweep_number'] for s in sweeps if s['stimulus_name'] == sweep_name ]
 
@@ -326,9 +375,9 @@ def convert_spike_times_to_ind(spike_times, dt):
     return spike_ind
 
 
-def get_model_spike_ind_from_nwb(ends_with, specimen_id_directory, model_string, sweeps, dt):
+def get_model_spike_ind_from_nwb(ends_with, specimen_id_directory, model_string, sweeps, dt, where_running):
     ''' Gets the times of spikes from the model nwb file and converts them to indices
-    inputs       
+    inputs.  If code running outside of the Allen Institute, the model .nwb file will be downloaded.       
         ends_with: string
             end of file searching for:  options "_GLIF1_neuron_config.json","_GLIF2_neuron_config.json' etc."
         specimen_id_directory: string
@@ -339,6 +388,9 @@ def get_model_spike_ind_from_nwb(ends_with, specimen_id_directory, model_string,
             integers refer to the sweep number in the electrophysiology .nwb data file
         dt: float
             time step of data
+        where_running: string
+            options are 'internal': the code is being run within the Institute and can therefore access the internal file system
+                        'external': the code is being run outside the Institute and requires the use of the api to download the model nwb files
         Note that although ends_with and model_string should be appropriately paired, there is no check
         within this module to make sure that they are
     outputs: returns either a 
@@ -346,14 +398,14 @@ def get_model_spike_ind_from_nwb(ends_with, specimen_id_directory, model_string,
         or list of numpy arrays, each array contains the indices of the spikes in each sweep
             '''
     
-    model_spike_times=get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, sweeps)
+    model_spike_times=get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, sweeps, where_running)
     if hasattr(model_spike_times, '__len__'): #if there is no model, model_spike_times will be nan and not have a length
         return convert_spike_times_to_ind(model_spike_times, dt)
     else:
         return np.nan
 
 
-def get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, sweeps):
+def get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, sweeps, where_running):
     ''' Gets the times of spike from the model nwb file
     inputs       
         ends_with: string
@@ -364,6 +416,9 @@ def get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_strin
             string searching for in model name: options '(LIF)', '(LIF-R)', '(LIF-ASC)', '(LIF-R_ASC)', '(LIF-R_ASC_A')
         sweeps: list of integers
             integers refer to the sweep number in the electrophysiology .nwb data file
+        where_running: string
+            options are 'internal': the code is being run within the Institute and can therefore access the internal file system
+                        'external': the code is being run outside the Institute and requires the use of the api to download the model nwb files
         Note that although ends_with and model_string should be appropriately paired, there is no check
         within this module to make sure that they are
     outputs: returns either a 
@@ -373,7 +428,12 @@ def get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_strin
             each array contains the times of the spikes in each sweep
         
             '''
-    path=get_model_nwb_path_from_folder(ends_with, specimen_id_directory, model_string)  #get nwb file path
+    if where_running=='internal':
+        path=get_model_nwb_path_from_folder(ends_with, specimen_id_directory, model_string)  #get nwb file path
+    elif where_running=='external':
+        path=download_model_nwb_if_model_exists_in_SDD(ends_with, specimen_id_directory, model_string)  #get nwb file path
+    else:
+        raise Exception('specify whether the code is being run internally or externally')
     if isinstance(path, basestring):
         model=NwbDataSet(path)
         model_spike_times=[]
@@ -384,7 +444,8 @@ def get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_strin
         return model_spike_times
     else:
         return np.nan
-    
+
+                
 def convert_list_to_numpy(dictionary):
     '''Assumes dictionary input is dictionary with a depth of 1 where values associated with 
     keys are single lists of data.  This converts these lists to numpy arrays.

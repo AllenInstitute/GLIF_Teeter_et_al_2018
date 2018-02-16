@@ -17,7 +17,7 @@ import shutil
 import sys
 relative_path=os.path.dirname(os.getcwd())
 sys.path = [os.path.join(relative_path, 'libraries')] + sys.path
-from data_library import get_ev_from_folder, get_sweep_num_by_name, get_model_spike_ind_from_nwb, get_model_spike_times_from_nwb, get_file_path_endswith, convert_spike_times_to_ind, check_spike_times_identical
+from data_library import get_ev_from_folder, get_sweep_num_by_name, get_model_spike_times_from_nwb, get_file_path_endswith, convert_spike_times_to_ind, check_spike_times_identical
 import expVarOfSpikeTrains 
 import pandas as pd
 from allensdk.core.cell_types_cache import CellTypesCache
@@ -28,6 +28,14 @@ ctc = CellTypesCache(manifest_file=os.path.join(relative_path,'cell_types_manife
 #---------------------------------------------------------------------------
 species="mouse"
 #species="human"
+
+#------------------------------------------------------------------------------------------------
+#------------SPECIFY WHETHER THE CODE IS BEING RUN INSIDE THE INSTITUTE---------------------------
+#------------------------------------------------------------------------------------------------
+
+where_running='external'
+#where_running='internal'
+
 #---------------------------------------------------------------------------
 #---------------------------------------------------------------------------
 #---------------------------------------------------------------------------
@@ -115,7 +123,7 @@ for ii, specimen_id_directory in enumerate(folders):
         continue
 
     # check to see that the spike times in the model files are the same (if not, it is likely that the was more than one stimulus amplitude played to the neuron) 
-    glif_spike_times_n1=get_model_spike_times_from_nwb('_GLIF1_neuron_config.json', specimen_id_directory, '(LIF)', n1_sweeps)
+    glif_spike_times_n1=get_model_spike_times_from_nwb('_GLIF1_neuron_config.json', specimen_id_directory, '(LIF)', n1_sweeps, where_running)
     if check_spike_times_identical(glif_spike_times_n1):
         pass
     else: 
@@ -123,7 +131,7 @@ for ii, specimen_id_directory in enumerate(folders):
         logging.warning(str(specimen_id)+"noise 1 has inconsistent model sweep times")
         sp_id_to_remove.append(specimen_id)
     
-    glif_spike_times_n2=get_model_spike_times_from_nwb('_GLIF1_neuron_config.json', specimen_id_directory, '(LIF)', n2_sweeps)
+    glif_spike_times_n2=get_model_spike_times_from_nwb('_GLIF1_neuron_config.json', specimen_id_directory, '(LIF)', n2_sweeps, where_running)
     if check_spike_times_identical(glif_spike_times_n2):
         pass
     else: 

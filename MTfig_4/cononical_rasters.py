@@ -13,10 +13,16 @@ from allensdk.core.nwb_data_set import NwbDataSet
 from allensdk.core.cell_types_cache import CellTypesCache
 ctc = CellTypesCache(manifest_file=os.path.join(relative_path,'cell_types_manifest.json'))
 
-#---------------------------------------------------------------
-#------------NO SPECIFICATIONS NEEDED---------------------------
-#---------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+#------------SPECIFY WHETHER THE CODE IS BEING RUN INSIDE THE INSTITUTE---------------------------
+#------------------------------------------------------------------------------------------------
 
+where_running='external'
+#where_running='internal'
+
+#------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
 
 def get_spikes(specimen_id):
     #---get spike times from the data
@@ -43,17 +49,12 @@ def get_spikes(specimen_id):
     out['dt']=dt
     out['bio_spike_times']=bio_spike_times
     out['stimulus']=stim
-#    out['LIF_spike_times']=get_model_spikes('_GLIF1_neuron_config.json', folder, '(LIF)', sweeps)
-#    out['LIFR_spike_times']=get_model_spikes('_GLIF2_neuron_config.json', folder, '(LIF-R)', sweeps)
-#    out['LIFASC_spike_times']=get_model_spikes('_GLIF3_neuron_config.json', folder, '(LIF-ASC)', sweeps)
-#    out['LIFRASC_spike_times']=get_model_spikes('_GLIF4_neuron_config.json', folder, '(LIF-R-ASC)', sweeps)
-#    out['LIFRASCAT_spike_times']=get_model_spikes('_GLIF5_neuron_config.json', folder, '(LIF-R-ASC-A)', sweeps)
-    out['LIF_spike_times']=get_model_spike_times_from_nwb('_GLIF1_neuron_config.json', folder, '(LIF)', sweeps)
-    out['LIFR_spike_times']=get_model_spike_times_from_nwb('_GLIF2_neuron_config.json', folder, '(LIF-R)', sweeps)
-    out['LIFASC_spike_times']=get_model_spike_times_from_nwb('_GLIF3_neuron_config.json', folder, '(LIF-ASC)', sweeps)
-    out['LIFRASC_spike_times']=get_model_spike_times_from_nwb('_GLIF4_neuron_config.json', folder, '(LIF-R-ASC)', sweeps)
-    out['LIFRASCAT_spike_times']=get_model_spike_times_from_nwb('_GLIF5_neuron_config.json', folder, '(LIF-R-ASC-A)', sweeps)
 
+    out['LIF_spike_times']=get_model_spike_times_from_nwb('_GLIF1_neuron_config.json', folder, '(LIF)', sweeps, where_running='external')
+    out['LIFR_spike_times']=get_model_spike_times_from_nwb('_GLIF2_neuron_config.json', folder, '(LIF-R)', sweeps, where_running='external')
+    out['LIFASC_spike_times']=get_model_spike_times_from_nwb('_GLIF3_neuron_config.json', folder, '(LIF-ASC)', sweeps, where_running='external')
+    out['LIFRASC_spike_times']=get_model_spike_times_from_nwb('_GLIF4_neuron_config.json', folder, '(LIF-R-ASC)', sweeps, where_running='external')
+    out['LIFRASCAT_spike_times']=get_model_spike_times_from_nwb('_GLIF5_neuron_config.json', folder, '(LIF-R-ASC-A)', sweeps, where_running='external')
 
     return out
 

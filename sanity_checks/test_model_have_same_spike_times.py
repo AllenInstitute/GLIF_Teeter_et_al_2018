@@ -14,6 +14,14 @@ from data_library import get_model_spike_times_from_nwb, get_sweep_num_by_name, 
 from allensdk.core.cell_types_cache import CellTypesCache
 ctc = CellTypesCache(manifest_file=os.path.join(relative_path,'cell_types_manifest.json'))
 
+#------------------------------------------------------------------------------------------------
+#------------SPECIFY WHETHER THE CODE IS BEING RUN INSIDE THE INSTITUTE---------------------------
+#------------------------------------------------------------------------------------------------
+
+where_running='external'
+#where_running='internal'
+
+
 # load data out of configuration files
 data_path=os.path.join(relative_path,'create_data_dir/human_data')
 folders=np.sort([os.path.join(data_path, f) for f in  os.listdir(data_path)])
@@ -32,13 +40,13 @@ for ii, folder in enumerate(folders):
            ['_GLIF4_neuron_config.json', '(LIF-R-ASC)'],  
            ['_GLIF5_neuron_config.json', '(LIF-R-ASC-A)']]
     for pair in pairs: #TODO: update this to use new function or check files
-        glif_spike_ind_n1=get_model_spike_times_from_nwb(pair[0], folder, pair[1], noise1_sweeps)
+        glif_spike_ind_n1=get_model_spike_times_from_nwb(pair[0], folder, pair[1], noise1_sweeps, where_running)
         if check_spike_times_identical(glif_spike_ind_n1):
             pass
         else:
             print ii, specimen_id, 'has unmatching noise 1 spike times'
             print glif_spike_ind_n1
-        glif_spike_ind_n2=get_model_spike_times_from_nwb(pair[0], folder, pair[1], noise1_sweeps)
+        glif_spike_ind_n2=get_model_spike_times_from_nwb(pair[0], folder, pair[1], noise1_sweeps, where_running)
         if check_spike_times_identical(glif_spike_ind_n2):
             pass
         else:

@@ -10,7 +10,7 @@ relative_path=os.path.dirname(os.getcwd())
 sys.path.append(os.path.join(relative_path, 'libraries'))
 import time
 import matplotlib.pyplot as plt
-from data_library import get_sweep_num_by_name, get_model_spike_ind_from_nwb, get_file_path_endswith, convert_spike_times_to_ind
+from data_library import get_sweep_num_by_name, get_file_path_endswith, convert_spike_times_to_ind
 from allensdk.model.glif.glif_neuron import GlifNeuron
 from allensdk.internal.model.glif.glif_optimizer_neuron import GlifOptimizerNeuron
 from allensdk.core.cell_types_cache import CellTypesCache

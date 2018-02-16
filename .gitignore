@@ -16,8 +16,4 @@ mouse_nwb
 human_struc_data_dir
 mouse_struc_data_dir
 *~
-create_data_dir/mouse_struct_data_dir_before_exclusions/
-create_data_dir/human_struc_data_dir_before_exclusions/
-SMfig_15/calc_all_subthresh_v_diff_RUN.py
-mouse_struc_data_dir_BU_check_against
-mouse_struc_data_dir_for_check
+/Users/corinneteeter/workspace/GLIF_Teeter_et_al_2018/model_nwb_files 

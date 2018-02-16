@@ -21,11 +21,17 @@ ctc = CellTypesCache(manifest_file=os.path.join(relative_path,'cell_types_manife
 from allensdk.model.glif.glif_neuron import GlifNeuron
 import time
 
-#---------------------------------------------------------------
-#------------NO SPECIFICATIONS NEEDED---------------------------
-#----------run code via "calc_all_exp_var_RUN.py"---------------
-#-If running here, see input specifications in __main__ below---
-#---------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+#------------SPECIFY WHETHER THE CODE IS BEING RUN INSIDE THE INSTITUTE---------------------------
+#------------------------------------------------------------------------------------------------
+
+where_running='external'
+#where_running='internal'
+
+#------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+
 
 def exVar(data_spike_ind_list, model_spike_ind, sigma, dt, data_length):
     '''Calculates explained variance
@@ -179,7 +185,7 @@ def cycle(specimen_id_directory, ends_with, model_string, data_dict):
         print '\twrote output to ', os.path.join(specimen_id_directory, str(specimen_id)+'_'+cre+ends_with[:7]+'exp_var_ratio_10ms.json')    
         return
 
-    model_n1_nwb_ind=get_model_spike_ind_from_nwb(ends_with, specimen_id_directory, model_string, data_dict['noise1_sweeps'], data_dict['n1_dt'])[0]
+    model_n1_nwb_ind=get_model_spike_ind_from_nwb(ends_with, specimen_id_directory, model_string, data_dict['noise1_sweeps'], data_dict['n1_dt'], where_running)[0]
 
     # get explained variances
     ev['after_opt']['noise_1']=exVar(data_dict['noise1_spike_ind'], [model_n1_nwb_ind], [.01], data_dict['n1_dt'], len(data_dict['noise1_stim']))[0] 
@@ -204,10 +210,10 @@ def cycle(specimen_id_directory, ends_with, model_string, data_dict):
     
     # Sanity check to make sure model spike times from the database are all the same..
     # Note that all of these should have been eliminated via the "check_sweeps_and_rm_folders.py" script 
-    glif_spike_times_n1=get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, data_dict['noise1_sweeps'])
+    glif_spike_times_n1=get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, data_dict['noise1_sweeps'], where_running)
     ev['model_spike_times_same_across_sweeps']['n1']=check_spike_times_identical(glif_spike_times_n1)
     
-    glif_spike_times_n2=get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, data_dict['noise2_sweeps'])
+    glif_spike_times_n2=get_model_spike_times_from_nwb(ends_with, specimen_id_directory, model_string, data_dict['noise2_sweeps'], where_running)
     ev['model_spike_times_same_across_sweeps']['n2']=check_spike_times_identical(glif_spike_times_n2)
     
     # sanity check to make sure calculated model spike times run here match what is in the Allen Institute Cell Types Database.
