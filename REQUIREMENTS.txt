@@ -23,15 +23,14 @@ statsmodels
 copy
 csv
  
-For the clustering code the followin R packages will be required:
-gtools
-gplots
-stats
+For the clustering code, Jupyter Notebooks need to be installed through Project Jupyter. This installation should include installation of an R kernel in order to run the Jupyter R notebooks. 
+In addition, the following R packages are required. Note that the first code cell in each Jupyter notebook will attempt to install these relevant R packages if they are not already present:
 ape
 e1071
-cluster
-apcluster
+gplots
 mclust
-
+apcluster
+gtools
+plotrix
 
 
