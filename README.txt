@@ -1,4 +1,4 @@
-This code will reproduce the analysis and figures in the Nature Communications, 2018 article, "Generalized Leaky Integrate-And-Fire Models Classify Multiple Neuron Types", by Teeter Et. Al.  This code was written by Corinne Teeter with guest appearances by Vilas Menon and Ramakrishnan Iyer and others on the software team (see the AUTHORS file for more info).  
+﻿This code will reproduce the analysis and figures in the Nature Communications, 2018 article, "Generalized Leaky Integrate-And-Fire Models Classify Multiple Neuron Types", by Teeter Et. Al.  This code was written by Corinne Teeter with guest appearances by Vilas Menon and Ramakrishnan Iyer and others on the software team (see the AUTHORS file for more info).  
 
 This repository is provided “as is”.  However, pull requests will be considered on an individual basis with adequate unit tests.  Please inquire whether your desired contribution may be considered.  Of particular interest would be the conversion to python 3 and individual module unit tests.
 
@@ -127,13 +127,13 @@ Note that this code will print the Friedman values for the screen.  The value fo
 
 The distribution of difference values between the excitatory and inhibitory neurons as found in the main text of the article can be recalculated by running expVar_stats_of_differences.py.  In the output that is printed to the screen, the "level" refers to the differences between the levels specified. Statistical tests are described in the publication.  Note that the data file being read in can be bipassed by 
 
-------FIGURE 6:-------------
+------FIGURE 6: RUN CODE IN "Fig_6_glif_and_feature_clusters.ipynb"-------------
 
-VILAS
+Run "Fig_6_glif_and_feature_clusters.ipynb" Jupyter notebook in the GLIF_clustering subfolder. This script generates the various panels in Figure 6.
 
-------FIGURE 7:-------------
+------FIGURE 7: RUN CODE IN "Fig_7_glif_spike_shape_clusters.ipynb"-------------
 
-VILAS
+Run "Fig_7_glif_spike_shape_clusters.ipynb" Jupyter notebook in the GLIF_clustering subfolder. This script generates the various panels in Figure 7.
 
 ------SUPPLEMENTARY FIGURE 1: RUN CODE IN "MTfig_3e_SMfig_3"-------------------
 
@@ -189,17 +189,19 @@ To make the 'aic_spike_times_noise1.csv' run 'aic_spike_times_noise1.py'.  Note 
 
 To remake the 'aic_subthresh_v_noise1.csv' run 'aic_subthresh_v_noise1.py'.  Note that the output file will be saved with a different name to avoid confusion.
 
-------SUPPLEMENTARY FIGURE 12:---------------------
+------SUPPLEMENTARY FIGURE 12: RUN CODE IN "Fig_Supp12_glif_and_feature_clusters_affinity_propagation.ipynb"---------------------
 
-Vilas
+Run "Fig_Supp12_glif_and_feature_clusters_affinity_propagation.ipynb" Jupyter notebook in the GLIF_clustering subfolder. This script generates the various panels in Supplemental Figure 12. Note that the identification of optimal cluster sizes using the gap statistic is a slow process for affinity propagation.
 
-------SUPPLEMENTARY FIGURE 13:---------------------
 
-Vilas
+------SUPPLEMENTARY FIGURE 13: RUN CODE IN "Fig_Supp13_confusion_matrices.ipynb"---------------------
 
-------SUPPLEMENTARY FIGURE 14:---------------------
+Run "Fig_Supp13_confusion_matrices.ipynb" Jupyter notebook in the GLIF_clustering subfolder. This script generates the various panels in Supplemental Figure 13.
 
-Vilas
+
+------SUPPLEMENTARY FIGURE 14: RUN CODE IN "Fig_Supp14_glif_spike_shape_clusters_affinity_propagation.ipynb"---------------------
+
+Run "Fig_Supp14_glif_spike_shape_clusters_affinity_propagation.ipynb" Jupyter notebook in the GLIF_clustering subfolder. This script generates the various panels in Supplemental Figure 14. Note that the identification of optimal cluster sizes using the gap statistic is a slow process for affinity propagation.
 
 ------SUPPLEMENTARY FIGURE 15: RUN CODE IN "SMfig_15"--------------------
 
@@ -211,9 +213,9 @@ Run "calc_all_subthresh_v_diff.py" or "calc_all_subthresh_v_diff_RUN.py" (exampl
 
 Run "contributions_to_clustering_performance.py".  Note that this code used the data saved in 'MTfig_5_MTtable_3_SMFigs_8_9_10/saved_data/stats_out.pkl')
 
-------SUPPLEMENTARY FIGURE 17---------------------
+------SUPPLEMENTARY FIGURE 17: RUN CODE IN "Fig_Supp17_glif_spike_shape_clusters_confidence_intervals.ipynb"---------------------
 
-Vilas
+Run "Fig_Supp17_glif_spike_shape_clusters_confidence_intervals.ipynb" Jupyter notebook in the GLIF_clustering subfolder. This script generates the various panels in Supplemental Figure 17.
 
 --------TABLE 1: NOT AVALABLE, HAND MADE -----------------------------------
 
